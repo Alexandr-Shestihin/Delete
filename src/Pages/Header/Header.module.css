@@ -10,3 +10,10 @@ img{
    height: 100px;
    border-radius: 10px;
 }
+.flexContainer{
+   display: flex;
+   justify-content: space-between;
+}
+.loginLink{
+   color: white;
+}

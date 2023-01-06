@@ -1,19 +1,16 @@
 import React from 'react';
-import ContentContainer from '../../Common/ContentContainer';
-import NavLinkComponent from '../NavLinkComponent';
-import UserContent from '../UserContent';
-import s from './Profile.module.css';
+import s from './profile.module.css';
 
-const Profile = (props) => {
+const Profile = ({ profile }) => {
+
    return (
-      <div className={s.mainContainer}>
-         <ContentContainer>
-            <div className={s.siteBarContainer}>
-               <NavLinkComponent />
-               <UserContent />
-            </div>
-
-         </ContentContainer>
+      <div className={s.container}>
+         {profile?.photos.large ?
+            <div><img src={profile.photos.large} alt="photo" /></div> : false}
+         <div className={s.containerInfo}>
+            <div>Name: {profile?.fullName}</div>
+            <div>AboutMe: {profile?.aboutMe}</div>
+         </div>
       </div>
    )
 }

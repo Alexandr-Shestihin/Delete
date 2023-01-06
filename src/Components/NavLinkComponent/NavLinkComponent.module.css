@@ -5,9 +5,12 @@
    flex: 0 0 200px;
    background: rgb(11, 15, 143);
 }
-a{
+.link{
    display: block;
    margin-top: 10px;
    color: white;
    text-decoration: none;
+}
+.active{
+   color: gold;
 }
