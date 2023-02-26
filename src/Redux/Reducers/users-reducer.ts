@@ -1,3 +1,4 @@
+import { photosType } from '../../types/ReduceType';
 import { API } from '../../API/index';
 
 const CHANGE_FOLLOW = "CHANGE_FOLLOW";
@@ -5,14 +6,23 @@ const SET_USERS = "SET_USERS";
 const SET_TOTAL_PAGE_COUNT = "SET_TOTAL_PAGE_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
+type UsersArr = {
+   followed: boolean,
+   id: number,
+   name: string,
+   photos: photosType,
+   status: null | string,
+   uniqueUrlName: null | string
+}
 const initialState = {
-   users: [],
-   pageSize: 100,
-   currentPage: 1,
-   totalUsersCount: 0,
+   users: [] as Array<UsersArr> | [],
+   pageSize: 100 as number,
+   currentPage: 1 as number,
+   totalUsersCount: 0 as number,
 }
 
-const usersReducer = (state = initialState, action) => {
+type initialStateType = typeof initialState;
+const usersReducer = (state = initialState, action: any): initialStateType => {
    switch (action.type) {
       case CHANGE_FOLLOW:
          return {
@@ -51,21 +61,25 @@ const usersReducer = (state = initialState, action) => {
    }
 }
 
-export const changeFollowAC = (userID) => {
+type changeFollowACType = { type: typeof CHANGE_FOLLOW, userID: number }
+export const changeFollowAC = (userID: number): changeFollowACType => {
    return { type: CHANGE_FOLLOW, userID: userID }
 }
-export const setUsersAC = (users) => {
+type setUsersACType = { type: typeof SET_USERS, users: Array<UsersArr> }
+export const setUsersAC = (users: Array<UsersArr>): setUsersACType => {
    return { type: SET_USERS, users: users }
 }
-export const setTotalCountAC = (totalCount) => {
+type setTotalCountACType = { type: typeof SET_TOTAL_PAGE_COUNT, totalCount: number }
+export const setTotalCountAC = (totalCount: number): setTotalCountACType => {
    return { type: SET_TOTAL_PAGE_COUNT, totalCount: totalCount }
 }
-export const setCurrentPageAC = (currentPage) => {
+type setCurrentPageACType = { type: typeof SET_CURRENT_PAGE, currentPage: number }
+export const setCurrentPageAC = (currentPage: number): setCurrentPageACType => {
    return { type: SET_CURRENT_PAGE, currentPage: currentPage }
 }
 
-export const getUsersThunkCreator = (pageSize, currentPage) => {
-   return (dispatch) => {
+export const getUsersThunkCreator = (pageSize: number, currentPage: number) => {
+   return (dispatch: any) => {
       API.users.getUsers(pageSize, currentPage)
          .then(res => {
             dispatch(setUsersAC(res.data.items));

@@ -10,12 +10,12 @@ const inctance = axios.create({
 
 export const API = {
    users: {
-      getUsers(pageCount, currentPage) {
+      getUsers(pageCount: number, currentPage: number) {
          return inctance.get(`users?count=${pageCount}&page=${currentPage}`)
       }
    },
    profile: {
-      getUserProfile(userId) {
+      getUserProfile(userId: number) {
          return inctance.get(`profile/${userId}`)
       }
    },

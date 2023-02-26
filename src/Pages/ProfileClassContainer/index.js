@@ -14,7 +14,7 @@ class ProfileClassContainer extends React.Component {
    render() {
       return (
          <WitchRedirect>
-            <ProfileClass profile={this.props.profile} />
+            <ProfileClass profile={this.props.profile} increment={this.props.increment} />
          </WitchRedirect>
       )
    }
@@ -24,6 +24,7 @@ const mapStateToProps = (state) => {
    return {
       profile: state.profileReducer.profile,
       id: state.authReducer.id,
+      increment: 1
    }
 }
 const mapDispatchToProps = (dispatch) => {

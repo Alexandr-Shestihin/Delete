@@ -13,6 +13,7 @@ const ProfileContainer = (props) => {
    const profile = useSelector(el => el.profileReducer.profile);
    const currentUserID = useSelector(el => el.authReducer.id);
    const userID = useParams().userID;
+   console.log(userID)
 
    useEffect(() => {
       dispatch(getUserProfileThunkCreator(userID || currentUserID));

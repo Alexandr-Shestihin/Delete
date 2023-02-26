@@ -3,13 +3,15 @@ import { API } from "../../API";
 const SET_AUTH_DATA = "SET_AUTH_DATA";
 
 const initialState = {
-   login: null,
-   email: null,
-   id: null,
-   isAuth: false,
+   login: null as null | string,
+   email: null as null | string,
+   id: null as null | number,
+   isAuth: false as boolean,
 }
 
-const authReducer = (state = initialState, action) => {
+type initialStateType = typeof initialState;
+
+const authReducer = (state = initialState, action: any): initialStateType => {
    switch (action.type) {
       case SET_AUTH_DATA:
          return {
@@ -25,12 +27,18 @@ const authReducer = (state = initialState, action) => {
    }
 }
 
-export const setAuthDataAC = (login, email, id) => {
+type setAuthDataACType = {
+   type: typeof SET_AUTH_DATA,
+   login: string | null,
+   email: string | null,
+   id: number | null,
+}
+export const setAuthDataAC = (login: string, email: string, id: number): setAuthDataACType => {
    return { type: SET_AUTH_DATA, login, email, id }
 }
 
 export const getCurrentUserInfoThunkCreator = () => {
-   return (dispatch) => {
+   return (dispatch: any) => {
       API.auth.getInfo()
          .then(res => {
             console.log(res.data.resultCode)

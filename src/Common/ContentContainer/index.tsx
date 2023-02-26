@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './ContentContainer.module.css';
 
-const ContentContainer = (props) => {
+type props = {
+   children: React.ReactNode
+}
+const ContentContainer: FC<props> = (props) => {
+
    return (
       <div className={s.mainContainer}>
          {props.children}
